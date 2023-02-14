@@ -16,4 +16,9 @@ RSpec.describe Counter do
         counting.add(8)
         expect(counting.report).to eq "Counted to 11 so far."
     end
+
+    it "returns an error when string is passed" do
+        counting = Counter.new
+        expect { counting.add('hello') }.to raise_error(TypeError)
+    end
 end
