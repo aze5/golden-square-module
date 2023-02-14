@@ -6,6 +6,10 @@ class StringBuilder
     def add(str)
         @str += str
     end
+    
+    def size
+        return @str.length
+    end
 
     def output
         return @str
