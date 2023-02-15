@@ -1,3 +1,3 @@
 def make_snippet(string)
-    pass
+    return string + "..."
 end
