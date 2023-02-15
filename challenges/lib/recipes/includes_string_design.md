@@ -37,10 +37,10 @@ If pattern is not found: "#{pattern} not found"
 # EXAMPLE
 
 includes_string("hello WORLD") => "#TODO not found"
-includes_string("HELLO WORLD#TODO") => "#TODO not found"
+includes_string("") => "#TODO not found"
+includes_string("HELLO WORLD#TODO") => "#TODO found at index: 11"
 includes_string("hello world #TODO") => "#TODO found at index: 12"
 includes_string("hello #TODO WoRLD") => "#TODO found at index: 6"
-includes_string("#TODOhello WORLD!") => "#TODO not found"
-includes_string("") => "#TODO not found"
+includes_string("#TODOhello WORLD!") => "#TODO found at index: 0"
 includes_string(nil) throws an error
 ```

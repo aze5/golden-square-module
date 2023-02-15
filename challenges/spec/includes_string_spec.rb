@@ -13,5 +13,17 @@ RSpec.describe "includes_string" do
         it "returns '#TODO found at index: 6' when passed 'hello #TODO WoRLD'" do
             expect(includes_string("hello #TODO WoRLD")).to eq "#TODO found at index: 6"
         end
+
+        it "returns '#TODO found at index: 11' when passed 'HELLO WORLD#TODO'" do
+            expect(includes_string("HELLO WORLD#TODO")).to eq "#TODO found at index: 11"
+        end
+        
+        it "returns '#TODO found at index: 0' when passed '#TODOhello WORLD!'" do
+            expect(includes_string("#TODOhello WORLD!")).to eq "#TODO found at index: 0"
+        end
+
+        it "fails when passed nothing" do 
+            expect{ includes_string }.to raise_error(ArgumentError)
+        end
     end
 end
