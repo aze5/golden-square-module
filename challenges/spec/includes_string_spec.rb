@@ -9,5 +9,9 @@ RSpec.describe "includes_string" do
         it "returns '#TODO found at index: 12' when passed 'hello world #TODO'" do
             expect(includes_string("hello world #TODO")).to eq "#TODO found at index: 12"
         end
+
+        it "returns '#TODO found at index: 6' when passed 'hello #TODO WoRLD'" do
+            expect(includes_string("hello #TODO WoRLD")).to eq "#TODO found at index: 6"
+        end
     end
 end
