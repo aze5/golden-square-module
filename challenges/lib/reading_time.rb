@@ -6,5 +6,4 @@ def reading_time(words)
 end
 
 
-words = "hi " * 12000
-print reading_time(words)
+
