@@ -9,5 +9,9 @@ RSpec.describe "grammar_checker" do
         it "returns 'Good grammar!' when 'Hello WORLD!' is passed" do
             expect(grammar_checker("Hello WORLD!")).to eq "Good grammar!"
         end
+
+        it "returns 'ERROR, your text is empty' when empty string is passed" do
+            expect(grammar_checker("")).to eq "ERROR, your text is empty"
+        end
     end
 end
