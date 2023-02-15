@@ -10,4 +10,14 @@ RSpec.describe "methods" do
             expect(make_snippet("hello there")).to eq "hello..."
         end
     end
+
+    context "count_words(string) method" do
+        it "returns 2 when passed hello world" do
+            expect(count_words("hello world")).to eq 2
+        end
+
+        it "returns 5 when passed Hello world, I love ruby!" do
+            expect(count_words("Hello word, I love ruby!")).to eq 5
+        end
+    end
 end

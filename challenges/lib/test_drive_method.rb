@@ -5,3 +5,8 @@ def make_snippet(string)
         return string
     end
 end
+
+def count_words(string)
+    lst = string.split()
+    return lst.length
+end
