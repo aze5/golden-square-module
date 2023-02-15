@@ -1,6 +1,6 @@
 
 
-# {{PROBLEM}} Method Design Recipe
+# includes_string Method Design Recipe
 
 ## 1. Describe the Problem
 
@@ -10,7 +10,7 @@ I want to check if a text includes the string #TODO.
 
 ## 2. Method Signature
 
-includes_string(text) will split a string into an array and use the array#include? method to check if the pattern is included in text
+includes_string(text) will  use string#include? method to check if the pattern is included in text
 
 method name:
 includes_string(text)
@@ -22,7 +22,6 @@ paramater(s):
 variable(s):
 
 - pattern - the pattern to search for (in this case '#TODO')
-- word_array - the array in which each word in 'text' will be kept
 - index - the index of the pattern (if found)
 
 Output:
