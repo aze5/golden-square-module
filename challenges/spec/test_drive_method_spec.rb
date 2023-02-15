@@ -1,6 +1,6 @@
-require "make_snippet"
+require "test_drive_method"
 
-RSpec.describe "make_snippet" do
+RSpec.describe "methods" do
     context "make_snippet(string) method" do
         it "returns hi when 'hi' is passed into the argument" do
             expect(make_snippet("hi")).to eq "hi"
