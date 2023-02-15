@@ -17,5 +17,17 @@ RSpec.describe "grammar_checker" do
         it "fails if nothing is passed" do
             expect { grammar_checker }.to raise_error(ArgumentError)
         end
+
+        it "returns 'Your grammar is incorrect' when 'Hello world' is passed" do
+            expect(grammar_checker("Hello world")).to eq "Your grammar is incorrect"
+        end
+
+        it "returns 'Your grammar is incorrect' when 'hello world.' is passed" do
+            expect(grammar_checker("hello world.")).to eq "Your grammar is incorrect"
+        end
+
+        it "returns 'Your grammar is incorrect' when 'hello world?' is passed" do
+            expect(grammar_checker("hello world?")).to eq "Your grammar is incorrect"
+        end
     end
 end
