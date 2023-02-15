@@ -13,5 +13,9 @@ RSpec.describe "grammar_checker" do
         it "returns 'ERROR, your text is empty' when empty string is passed" do
             expect(grammar_checker("")).to eq "ERROR, your text is empty"
         end
+
+        it "fails if nothing is passed" do
+            expect { grammar_checker }.to raise_error(ArgumentError)
+        end
     end
 end
