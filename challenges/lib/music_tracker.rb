@@ -9,8 +9,7 @@ class MusicTracker
   
     def remove(song) # song is a string
       # fails if songs array is empty
-      # remove song from songs array
-      # No return value
+      @songs.delete(song)
     end
   
     def view
