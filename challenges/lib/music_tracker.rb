@@ -8,7 +8,7 @@ class MusicTracker
     end
   
     def remove(song) # song is a string
-      # fails if songs array is empty
+      fail "No such song." unless @songs.include?(song)
       @songs.delete(song)
     end
   
