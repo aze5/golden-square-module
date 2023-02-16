@@ -1,15 +1,14 @@
 class TaskTracker
     def initialize
-      
+      @tasks = []
     end
   
     def view
-      return ["Walk the dog"]
+      return @tasks
     end
   
-    def add(task) # task is a string
-      # adds a task to array
-      # no return value
+    def add(task) 
+      @tasks << task
     end
   
     def complete_task(task)
