@@ -12,6 +12,7 @@ class TaskTracker
     end
   
     def complete_task(task)
+      fail "No such task." unless @tasks.include?(task)
       @tasks.delete(task)
     end
   end
