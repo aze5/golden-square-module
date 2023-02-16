@@ -1,11 +1,10 @@
 class MusicTracker
     def initialize
-      # ...
+      @songs = []
     end
   
-    def add(song) # song is a string
-      # adds song to array
-      # No return value
+    def add(song) 
+      @songs << song
     end
   
     def remove(song) # song is a string
@@ -15,6 +14,6 @@ class MusicTracker
     end
   
     def view
-      return ["song name"]
+      return @songs
     end
   end
