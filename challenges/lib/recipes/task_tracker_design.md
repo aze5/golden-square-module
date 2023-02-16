@@ -43,7 +43,7 @@ tasks.view => ["Walk the dog"]
 
 # 2
 tasks = TaskTracker.new
-tasks.complete_task(task) # fails with "No task set."
+tasks.complete_task(task) # fails with "No such task."
 
 # 3
 tasks = TaskTracker.new
