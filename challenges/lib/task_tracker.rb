@@ -1,6 +1,6 @@
 class TaskTracker
     def initialize
-      # ...
+      
     end
   
     def view
