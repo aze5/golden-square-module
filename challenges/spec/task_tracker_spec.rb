@@ -21,4 +21,9 @@ describe TaskTracker do
         tasks.complete_task("Walk the dog")
         expect(tasks.view).to eq ["Wash dishes"]
     end
+
+    it "fails if an attempt is made to complete a task that doesn't exist" do
+        tasks = TaskTracker.new
+        expect { tasks.complete_task("Walk the dog") }.to raise_error("No such task.")
+    end
 end
