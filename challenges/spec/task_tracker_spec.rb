@@ -26,4 +26,13 @@ describe TaskTracker do
         tasks = TaskTracker.new
         expect { tasks.complete_task("Walk the dog") }.to raise_error("No such task.")
     end
+
+    it "returns 2 tasks after 2 tasks are added, one is completed and one is added again" do
+        tasks = TaskTracker.new
+        tasks.add("Walk the dog")
+        tasks.add("Wash dishes")
+        tasks.complete_task("Walk the dog")
+        tasks.add("Finish chapter 7")
+        expect(tasks.view).to eq ["Wash dishes", "Finish chapter 7"]
+    end
 end
