@@ -15,9 +15,13 @@ class TaskTracker
     # ...
   end
 
-  def add_task(task, complete="uncompleted") # task is a string
-    # adds a task and marks it as uncompleted by default
-    # returns a list of tasks
+  def view
+    # returns array of tasks
+  end
+
+  def add(task) # task is a string
+    # adds a task to array
+    # no return value
   end
 
   def complete_task(task)
@@ -34,8 +38,8 @@ end
 ```ruby
 # 1
 tasks = TaskTracker.new
-tasks.add("Walk the dog") => ["Walk the dog"]
-tasks.complete_task(task)
+tasks.add("Walk the dog")
+tasks.view => ["Walk the dog"]
 
 # 2
 tasks = TaskTracker.new
@@ -43,7 +47,10 @@ tasks.complete_task(task) # fails with "No task set."
 
 # 3
 tasks = TaskTracker.new
-tasks.add("Walk the dog") => ["Walk the dog"]
+tasks.add("Walk the dog")
+tasks.view => ["Walk the dog"]
 tasks.complete_task("Walk the dog")
-tasks.add("Wash dishes") => ["Wash dishes"]
+tasks.add("Wash dishes")
+tasks.add("Finish chapter 7")
+tasks.view => ["Wash dishes", "Finish chapter 7"]
 ```
