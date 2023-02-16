@@ -20,4 +20,9 @@ describe MusicTracker do
     songs.remove("song name")
     expect(songs.view).to eq []
   end
+
+  it "fails when @songs doesn't have a song we try to remove" do
+    songs = MusicTracker.new
+    expect { songs.remove("song name") }.to raise_error("No such song.")
+  end
 end
