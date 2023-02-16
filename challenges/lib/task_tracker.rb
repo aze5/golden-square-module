@@ -12,8 +12,6 @@ class TaskTracker
     end
   
     def complete_task(task)
-      # marks a task as complete and removes the task from the list
-      # fails if there are no tasks
-      # No return value
+      @tasks.delete(task)
     end
   end
