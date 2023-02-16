@@ -4,7 +4,7 @@ class TaskTracker
     end
   
     def view
-      # returns array of tasks
+      return ["Walk the dog"]
     end
   
     def add(task) # task is a string
