@@ -86,24 +86,23 @@ end
 
 # 1 
 diary = Diary.new
-diary_entry = DiaryEntry.new("07/11/19" "contents")
+diary_entry = DiaryEntry.new("07/11/19", "contents")
 diary.add(diary_entry)
-diary.count_words # => 1
+expect(diary.all).to eq [diary_entry]
 
 # 2
 diary = Diary.new
-diary_entry = DiaryEntry.new("07/11/19" "contents")
-diary_entry2 = DiaryEntry.new("11/02/20" "more contents")
+diary_entry = DiaryEntry.new("07/11/19", "contents")
+diary_entry2 = DiaryEntry.new("11/02/20", "more contents")
 diary.add(diary_entry)
 diary.add(diary_entry2)
-diary.all # --> ["07/11/19", "11/02/20"]
-diary_entry3 = DiaryEntry.new("17/06/20", "contents " * 100)
+diary.all # --> [diary_entry, diary_entry2]
 diary.reading_time(50) # --> 2
 
 # 3
 diary = Diary.new
-diary_entry = DiaryEntry.new("07/11/19" "contents")
-diary_entry2 = DiaryEntry.new("11/02/20" "contents " * 50)
+diary_entry = DiaryEntry.new("07/11/19", "contents")
+diary_entry2 = DiaryEntry.new("11/02/20", "contents " * 50)
 diary_entry3 = DiaryEntry.new("17/06/20", "contents " * 100)
 diary.add(diary_entry)
 diary.add(diary_entry2)
@@ -112,8 +111,8 @@ diary.reading_time(50) # --> 3
 
 # 4
 diary = Diary.new
-diary_entry = DiaryEntry.new("07/11/19" "contents")
-diary_entry2 = DiaryEntry.new("11/02/20" "contents " * 50)
+diary_entry = DiaryEntry.new("07/11/19", "contents")
+diary_entry2 = DiaryEntry.new("11/02/20", "contents " * 50)
 diary_entry3 = DiaryEntry.new("17/06/20", "contents " * 100)
 diary.add(diary_entry)
 diary.add(diary_entry2)
@@ -122,8 +121,8 @@ diary.find_best_entry_for_reading_time(50, 1) # --> "11/02/20"
 
 # 5
 diary = Diary.new
-diary_entry = DiaryEntry.new("07/11/19" "contents")
-diary_entry2 = DiaryEntry.new("11/02/20" "contents " * 50 + "words " * 50)
+diary_entry = DiaryEntry.new("07/11/19", "contents")
+diary_entry2 = DiaryEntry.new("11/02/20", "contents " * 50 + "words " * 50)
 diary_entry3 = DiaryEntry.new("17/06/20", "contents " * 100)
 diary.add(diary_entry)
 diary.add(diary_entry2)
