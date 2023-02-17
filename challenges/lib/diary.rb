@@ -17,8 +17,6 @@ class Diary
       count += entry.count_words
     end
     return count
-    # Returns the number of words in all diary entries
-    # HINT: This method should make use of the `count_words` method on DiaryEntry.
   end
 
   def reading_time(wpm) # wpm is an integer representing
