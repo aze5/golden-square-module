@@ -17,4 +17,15 @@ describe "integration" do
     diary.add(diary_entry2)
     expect(diary.count_words).to eq 15
   end
+
+  it "returns reading time for all entries" do
+    diary = Diary.new
+    diary_entry = DiaryEntry.new("07/11/19", "contents")
+    diary_entry2 = DiaryEntry.new("11/02/20", "contents " * 50)
+    diary_entry3 = DiaryEntry.new("17/06/20", "contents " * 100)
+    diary.add(diary_entry)
+    diary.add(diary_entry2)
+    diary.add(diary_entry3)
+    expect(diary.reading_time(50)).to eq 3
+  end
 end
