@@ -21,10 +21,11 @@ describe "Integration" do
     expect(io).to receive(:puts).with("Please select a dish number to add to your order (eg. 1): ")
     expect(io).to receive(:gets) {"1"}
     expect(io).to receive(:puts).with("Please select a dish number to add to your order (eg. 1): ")
-    expect(io).to receive(:puts).with("If you are finished please press enter twice")
     expect(io).to receive(:gets) {"2"}
     expect(io).to receive(:puts).with("Please select a dish number to add to your order (eg. 1): ")
-    expect(io).to receive(:puts).with("If you are finished please press enter twice")
+    expect(io).to receive(:gets) {"5"}
+    expect(io).to receive(:puts).with("Invalid dish number. Please try again.")
+    expect(io).to receive(:puts).with("Please select a dish number to add to your order (eg. 1): ")
     expect(io).to receive(:gets) {""}
     time_now = double :time_now
     expect(time_now).to receive(:now).and_return(DateTime.parse("2023-02-22 10:36:15.051448 +0000").to_time)
