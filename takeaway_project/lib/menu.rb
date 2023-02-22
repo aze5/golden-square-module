@@ -1,15 +1,22 @@
 class Menu
   def initialize
-    # ...
+    @dishes = []
+  end
+
+  def dishes 
+    @dishes
   end
 
   def add(dish) # dish is an instance of Dish
-    # dish gets added to the menu
-    # Returns nothing
+    @dishes << dish
   end
 
   def view_menu
-    # Returns a list of dishes and there prices like this:
-    #  => ["kebab: £4.99", ...]
+    menu = []
+    @dishes.each_with_index do |dish, index|
+      menu << "#{index + 1}. #{dish.dish}: £#{dish.price}"
+    end
+    menu
   end
 end
+

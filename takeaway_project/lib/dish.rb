@@ -1,13 +1,14 @@
 class Dish
-  def initialize(dish_name, price) # dish_name is a string, price is an integer
-    # ...
+  def initialize(dish_name, price) # dish_name and price are strings
+    @dish = dish_name
+    @price = price
   end
 
   def dish
-    # Returns a dish name
+    @dish
   end
 
   def price
-    # returns price as a string
+    @price
   end
 end

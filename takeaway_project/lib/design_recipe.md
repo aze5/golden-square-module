@@ -1,4 +1,4 @@
-# {{PROBLEM}} Multi-Class Planned Design Recipe
+# Multi-Class Planned Design Recipe
 
 ## 1. Describe the Problem
 
@@ -10,7 +10,7 @@ As a customer, so that I can verify that my order is correct, I would like to se
 
 _Use the twilio-ruby gem to implement this next one._
 
-As a customer, so that I am reassured that my order will be delivered on time, I would like to receive a text such as "Thank you! Your order was placed and will be delivered before 18:52" after I have ordered.
+As a customer, so that I am reassured that my order will be delivered on time, I would like to receive a text such as "Thank you! Your order was placed and will be delivered before 18:52" after I have ordered."
 
 ## 2. Design the Class System
 
@@ -19,8 +19,8 @@ As a customer, so that I am reassured that my order will be delivered on time, I
  ┌─────────────────────────────┐
  │ Menu                        │   
  │  - add(dish)                │ ◄───────┐                
- │  - view_menu                │         │ includes the use of a menu object
- │    => ["kebab: £4.99", ...] │         │  
+ │  - view_menu                │         │ includes the use of a menu
+ │    => ["kebab: £4.99", ...] │         │ object.
  │                             │  ┌──────────────────────────┐
  │                             │  │ Order                    │
  └────┬────────────────────────┘  │  - place_order           │
@@ -44,7 +44,8 @@ class Order
     # ...
   end
 
-  def place_order(menu) # menu is an instance of Menu
+  def place_order(menu, phone_number) 
+    # menu is an instance of Menu phone_number is a string
     # gets input from customer for the dishes they want 
     # returns nothing
   end
@@ -53,9 +54,9 @@ class Order
     # returns array with all dishes ordered and their prices, and a total
   end
   
-  def get_text
+  def get_text(to_number) # to_number is a string
     # sends an sms to customer using twilio gem
-    # returns nothing
+    # returns success/fail method
   end
 
 class Menu
@@ -75,7 +76,8 @@ class Menu
 end
 
 class Dish
-  def initialize(dish_name, price) # dish_name is a string, price is an integer
+  def initialize(dish_name, price) 
+    # dish_name is a string, price is an integer
     # ...
   end
 
@@ -91,9 +93,6 @@ end
 
 ## 3. Create Examples as Integration Tests
 
-_Create examples of the classes being used together in different situations and
-combinations that reflect the ways in which the system will be used._
-
 ```ruby
 # Menu adds a dish
 menu = Menu.new
@@ -101,8 +100,15 @@ dish = Dish.new("kebab", "4.99")
 menu.add(dish)
 menu.view_menu # --> ["kebab: £4.99"]
 
-# Order shows menu when order is being placed
-
+# places order
+menu = Menu.new
+dish = Dish.new("Kebab", "4.99")
+dish2 = Dish.new("Burger", "4.99")
+menu.add(dish)
+menu.add(dish2)
+order = Order.new
+order.place_order(menu)
+order.view_receipt # => ["Kebab: £4.99", "Burger: £4.99", "Total: £9.98"]
 ```
 
 ## 4. Create Examples as Unit Tests
@@ -111,27 +117,55 @@ _Create examples, where appropriate, of the behaviour of each relevant class at
 a more granular level of detail._
 
 ```ruby
-# EXAMPLE
+# Order UNIT TESTS
 
-# Constructs a track
-track = Track.new("Carte Blanche", "Veracocha")
-track.title # => "Carte Blanche"
+# Sends an SMS
+io = double :kernel
+time = double :time
+order = Order.new(io, time)
+order.get_text("+447450323896") # => "SMS sent successfully"
+
+# fails when SMS doesn't send
+io = double :kernel
+time = double :time
+order = Order.new(io, time)
+order.get_text("123") # fails with => "Error sending SMS: 'Thank you! Your order was placed and will be delivered before: 18:30'"
+
+# Places order, sends SMS, and shows receipt
+io = double :kernel
+dish1 = double :fake_dish, dish: "Kebab", price: "4.99"
+dish2 = double :fake_dish, dish: "Burger", price: "4.99"
+menu = double :menu, dishes: [dish1, dish2]
+time = double :time
+order = Order.new(io, time)  
+order.place_order(menu, "+447450323896")
+order.view_receipt # => ["Kebab: £4.99", "Burger: £4.99", "Total: £9.98"]
+
+# Menu UNIT TESTS
+
+# Adds to and returns the dishes array
+dish1 = double :fake_dish, dish: "Kebab", price: "4.99"
+dish2 = double :fake_dish, dish: "Burger", price: "4.99"
+menu = Menu.new
+menu.add(dish1)
+menu.add(dish2)
+menu.dishes # => [dish1, dish2]
+
+# Shows the menu
+dish1 = double :fake_dish, dish: "Kebab", price: "4.99"
+dish2 = double :fake_dish, dish: "Burger", price: "4.99"
+menu = Menu.new
+menu.add(dish1)
+menu.add(dish2)    
+menu.view_menu # => ["1. Kebab: £4.99", "2. Burger: £4.99"]
+
+# Dish UNIT TESTS
+
+# Returns dish name
+dish = Dish.new("Kebab", "4.99")
+dish.dish # => "Kebab"
+
+# Returns dish price
+dish = Dish.new("Kebab", "4.99")
+dish.price # => "4.99"
 ```
-
-_Encode each example as a test. You can add to the above list as you go._
-
-## 5. Implement the Behaviour
-
-_After each test you write, follow the test-driving process of red, green,
-refactor to implement the behaviour._
-
-
-<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
-
----
-
-**How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fgolden-square&prefill_File=resources%2Fmulti_class_recipe_template.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fgolden-square&prefill_File=resources%2Fmulti_class_recipe_template.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fgolden-square&prefill_File=resources%2Fmulti_class_recipe_template.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fgolden-square&prefill_File=resources%2Fmulti_class_recipe_template.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fgolden-square&prefill_File=resources%2Fmulti_class_recipe_template.md&prefill_Sentiment=😀)  
-Click an emoji to tell us.
-
-<!-- END GENERATED SECTION DO NOT EDIT -->
